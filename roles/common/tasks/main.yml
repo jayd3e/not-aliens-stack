@@ -1,8 +1,8 @@
 ---
 - include: apt.yml
 - include: git.yml
-# - include: java.yml
-# - include: elasticsearch.yml
+- include: java.yml
+- include: elasticsearch.yml
 - include: redis.yml
 - include: postgres.yml
 - include: python.yml
