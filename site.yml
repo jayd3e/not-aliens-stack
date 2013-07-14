@@ -1,0 +1,6 @@
+---
+- hosts: vagrant
+  user: vagrant
+  roles:
+    - common
+    - master

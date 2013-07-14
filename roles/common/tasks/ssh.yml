@@ -1,0 +1,28 @@
+---
+- name: install openssh-server
+  sudo: True
+  apt: pkg=openssh-server state=latest
+
+- name: copy the public key over
+  copy: src=.ssh/id_rsa.pub
+        dest=/home/vagrant/.ssh/id_rsa.pub
+        owner=vagrant
+        group=vagrant
+        mode=0644
+        force=no
+
+- name: copy the private key over
+  copy: src=.ssh/id_rsa
+        dest=/home/vagrant/.ssh/id_rsa
+        owner=vagrant
+        group=vagrant
+        mode=0600
+        force=no
+
+- name: copy the known_hosts file over
+  copy: src=.ssh/known_hosts
+        dest=/home/vagrant/.ssh/known_hosts
+        owner=vagrant
+        group=vagrant
+        mode=0644
+        force=no

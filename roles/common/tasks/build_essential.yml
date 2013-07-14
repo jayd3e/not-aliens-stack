@@ -1,0 +1,4 @@
+---
+- name: install build-essential
+  sudo: True
+  apt: pkg=build-essential state=latest

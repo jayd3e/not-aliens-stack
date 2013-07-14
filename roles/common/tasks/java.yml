@@ -1,0 +1,4 @@
+---
+- name: install java
+  sudo: True
+  apt: pkg=openjdk-7-jre state=latest force=True

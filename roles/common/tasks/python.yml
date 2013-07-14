@@ -1,0 +1,48 @@
+---
+- include: build_essential.yml
+
+- name: install all python dependencies
+  sudo: True
+  apt: pkg={{ item }} state=latest
+  with_items:
+    - python-dev
+    - openssl
+    - libssl-dev
+    - libbz2-dev
+    - zlib1g-dev
+    - libexpat1-dev
+    - libdb4.8-dev
+    - libsqlite3-dev
+    - libncursesw5-dev
+    - libncurses5-dev
+    - libreadline-dev
+    - libxml2-dev
+    - python-software-properties
+
+- name: copy Python-3.3.0.tgz to /tmp
+  copy: src=Python-3.3.0.tgz
+        dest=/tmp/Python-3.3.0.tgz
+        owner=vagrant
+        group=vagrant
+        mode=0744
+
+- name: untar Python-3.3.0 into /tmp directory
+  command: tar -xzvf /tmp/Python-3.3.0.tgz
+           chdir=/tmp
+           creates=/tmp/Python-3.3.0
+
+- name: configure Python-3.3.0
+  command: ./configure --prefix=/opt/python-3.3.0
+           chdir=/tmp/Python-3.3.0
+           creates=/opt/python-3.3.0
+
+- name: make Python-3.3.0
+  command: make
+           chdir=/tmp/Python-3.3.0
+           creates=/opt/python-3.3.0
+
+- name: make install Python-3.3.0
+  sudo: True
+  command: make install
+           chdir=/tmp/Python-3.3.0
+           creates=/opt/python-3.3.0

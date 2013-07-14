@@ -1,4 +1,4 @@
-marina-vagrant
+not-aliens-vagrant
 ==============
 
-Vagrant setup for marina.
+Vagrant setup for not aliens site.

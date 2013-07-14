@@ -1,0 +1,4 @@
+---
+- name: install git
+  sudo: True
+  apt: pkg=git state=latest

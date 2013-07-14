@@ -1,0 +1,38 @@
+---
+# required to install psycopg2
+- name: install libpq5 library for psycopg2
+  sudo: True
+  apt: pkg=libpq-dev state=latest
+
+# required for the 'postgresql_user' task, that happens next
+- name: install psycopg2
+  sudo: True
+  pip: name=psycopg2
+
+- name: create the notaliens database
+  sudo: True
+  sudo_user: postgres
+  postgresql_db: name=notaliens
+
+- name: create the vagrant user and grant all privileges
+  sudo: True
+  sudo_user: postgres
+  postgresql_user: name=vagrant
+                   password=password
+                   db=notaliens
+
+- name: create the notaliens root directory
+  file: path=/opt/webapp/notaliens
+        owner=vagrant
+        group=vagrant
+        state=directory
+
+- name: create the notaliens virtualenv
+  command: virtualenv /opt/webapp/notaliens
+           creates=/opt/webapp/notaliens/bin/python
+
+- name: clone the notaliens git repository
+  git: repo=git@github.com:sontek/notaliens.com.git
+       dest=/opt/webapp/notaliens/src
+       update=no
+       force=no

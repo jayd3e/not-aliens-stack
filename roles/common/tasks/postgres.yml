@@ -1,0 +1,4 @@
+---
+- name: install postgres
+  sudo: True
+  apt: pkg=postgresql state=latest

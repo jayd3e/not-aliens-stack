@@ -1,0 +1,4 @@
+---
+- name: do an apt-get update
+  sudo: True
+  apt: update_cache=True

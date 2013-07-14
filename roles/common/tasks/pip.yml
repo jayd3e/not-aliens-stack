@@ -1,0 +1,4 @@
+---
+- name: install pip
+  sudo: True
+  apt: pkg=python-pip state=latest

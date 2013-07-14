@@ -1,0 +1,12 @@
+---
+- name: move elasticsearch deb to a tmp location
+  sudo: True
+  copy: src=elasticsearch-0.90.1.deb
+        dest=/tmp/elasticsearch-0.90.1.deb
+        owner=vagrant
+        group=vagrant
+        mode=0744
+
+- name: install elasticsearch
+  sudo: True
+  command: dpkg -i /tmp/elasticsearch-0.90.1.deb

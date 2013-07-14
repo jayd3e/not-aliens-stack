@@ -1,0 +1,4 @@
+---
+- name: install redis-server
+  sudo: True
+  apt: pkg=redis-server
